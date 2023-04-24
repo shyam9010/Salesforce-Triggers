@@ -1,0 +1,17 @@
+trigger Test on Contact (after insert){
+    list <account> c = new list<account>();
+    for(contact a : trigger.new){
+        account b1 = new account();
+        b1.Name = a.LastName;
+        b1.phone = a.Phone;
+        c.add(b1);
+    }
+    insert c;
+}
+
+
+
+Debug log code :
+
+contact c = new Contact(LastName = 'Test Account2',phone = '3825414142');
+insert c;

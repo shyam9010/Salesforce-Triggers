@@ -1,0 +1,15 @@
+trigger oppcreation on Account (After insert) {
+    list<Opportunity> a = new list <opportunity>();
+    for(Account Acc : Trigger.new){
+        Opportunity Opp = New Opportunity();
+        Opp.Name = Acc.Name +'Opportunity';
+        Opp.CloseDate = System.today();
+        Opp.StageName = 'Prospecting';
+        Opp.AccountId = Acc.Id;
+        a.add(Opp);
+    }
+    Insert a;   
+        
+    
+
+}

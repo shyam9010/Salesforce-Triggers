@@ -1,0 +1,13 @@
+trigger Errormessagewhenconisexists on Contact (before insert) {
+    list<string>st=new list<string>();
+ 
+ for(contact c:trigger.new)
+ {
+ list<contact>a=[select id,name,Email,lastname from contact where Lastname=:c.Lastname];
+ if(a.size()>0)
+ {
+ c.Lastname.adderror('already existing');
+ }
+ }
+
+}
